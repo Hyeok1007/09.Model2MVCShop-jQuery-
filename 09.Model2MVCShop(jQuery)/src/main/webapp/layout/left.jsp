@@ -8,15 +8,24 @@
 
 <head>
 	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>Model2 MVC Shop</title>
 
 	<link href="/css/left.css" rel="stylesheet" type="text/css">
 	
-	<!-- CDN(Content Delivery Network) 호스트 사용 -->
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript">
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+ 	 <link rel="stylesheet" href="/resources/demos/style.css">
 	
+	 <style>
+ 	 #draggable { width: 100px; height: 100px; padding: 0.5em; }
+ 	 </style>
+	<!-- CDN(Content Delivery Network) 호스트 사용 -->
+<!--  	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">-->
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script>
 		function history(){
 			popWin = window.open("/history.jsp",
 														"popWin",
@@ -41,7 +50,11 @@
 				//Debug..
 				//alert(  $( ".Depth03:contains('회원정보조회')" ) );
 		 		$(window.parent.frames["rightFrame"].document.location).attr("href","/user/listUser");
-			}); 
+			});
+			
+		 	 $( function() {
+		 	    $( "#draggable" ).draggable();
+		 	  } );
 		});	
 		 
 	</script>
@@ -138,6 +151,11 @@
 </tr>
 
 </table>
+
+<div id="draggable" class="ui-widget-content">
+  <p>♣비밀번호가 생각나지 않을땐 움직여 보세요♣</p>
+</div>
+
 
 </body>
 

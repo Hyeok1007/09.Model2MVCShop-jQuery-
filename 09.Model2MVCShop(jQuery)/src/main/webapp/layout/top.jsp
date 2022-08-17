@@ -50,7 +50,7 @@
 	<td height="10" >&nbsp;</td>
   </tr>
   <tr>
-    <td width="800" height="30"><h2>Model2 MVC Shop</h2></td>
+    <td width="800" height="30"><h2>Model2 MVC Shop &nbsp; &nbsp; &nbsp; &nbsp; ${user.userName}´Ô ±â´Ù·È½À´Ï´Ù.</h2></td>
   </tr>
   <tr>
     <td height="20" align="right" background="/images/img_bg.gif">
