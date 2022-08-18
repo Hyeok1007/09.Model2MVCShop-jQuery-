@@ -1,21 +1,45 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
-    
+<%@ page pageEncoding="EUC-KR"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
+<!DOCTYPE html>
 <html>
 <head>
 <title>상품 목록조회</title>
 
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
+	<link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<script type="text/javascript">
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
 
-function fncGetProductList(currentPage) {
-	document.getElementById("currentPage").value = currentPage;
-	document.detailForm.submit();
-}
-
+	function fncGetProductList(currentPage) {
+		//document.getElementById("currentPage").value = currentPage;
+		$("#currentPage").val(currentPage)
+		//document.detailForm.submit();
+		$("form").attr("method","POST").attr("action","/product/listProduct?menu=${param.menu}").submit();
+		
+		/* if(param.menu == 'search') {
+			$("form").attr("method","POST").attr("action","listProduct?menu=search").submit();
+		}else{
+			$("form").attr("method","POST").attr("action","listProduct?menu=manage").submit();
+		} */
+		
+	}
+	
+	$(function() {
+		$( "td.ct_btn01:contains('검색')").on("click", function(){
+			fncGetProductList(1);
+		});
+		
+		$( ".ct_list_pop td:nth-child(3)").on("click", function() {
+			self.location ="/product/getProduct?prodNo="+$(this).text().trim();
+		});
+		
+		$( ".ct_list_pop td:nth-child(3)").css("color", "red");
+		
+				
+	});
 </script>
 </head>
 
@@ -25,7 +49,8 @@ function fncGetProductList(currentPage) {
 
 <%--  <form name="detailForm" action="/listProduct.do?menu=${param.menu }" method="post"> --%>
 <%--  <form name="detailForm" action="/listProduct?menu=${param.menu }" method="post"> --%>
-<form name="detailForm" action="/product/listProduct?menu=${param.menu }" method="post">
+<%--  <form name="detailForm" action="/product/listProduct?menu=${param.menu }" method="post"> --%>
+<form name="detailForm">
 
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
@@ -79,7 +104,8 @@ function fncGetProductList(currentPage) {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23">
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:fncGetProductList('1');">검색</a>
+<!-- 						<a href="javascript:fncGetProductList('1');">검색</a> -->
+						검색
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23">
@@ -119,8 +145,10 @@ function fncGetProductList(currentPage) {
 		<td align="center">${i}</td>
 		<td></td>
 		<c:if test="${param.menu == 'search'}">
-	 	<%--  	<td align="left"><a href="/getProduct.do?prodNo=${product.prodNo }">${product.prodName }</a></td> --%>
-	 		<td align="left"><a href="/product/getProduct?prodNo=${product.prodNo }">${product.prodName }</a></td>  
+	 		<td align="left">
+	 		<%-- <a href="/product/getProduct?prodNo=${product.prodNo }">${product.prodName }</a> --%>
+	 			${product.prodName}
+	 		</td>  
 		</c:if>		
 		<c:if test="${param.menu == 'manage'}">
 <%--  			<td align="left"><a href="/updateProductView.do?prodNo=${product.prodNo }">${product.prodName }</a></td> --%>
@@ -152,9 +180,9 @@ function fncGetProductList(currentPage) {
 		<td align="center">
 			<input type="hidden" id="currentPage" name="currentPage" value=""/>
 
-		<jsp:include page="../common/pageNavigator.jsp"/>
+		<%-- <jsp:include page="../common/pageNavigator.jsp"/> --%>
 		
-	<%-- 	<c:if test="${resultPage.currentPage <= resultPage.pageUnit }">
+	 	<c:if test="${resultPage.currentPage <= resultPage.pageUnit }">
 				◀ 이전
 		</c:if>
 		
@@ -171,7 +199,7 @@ function fncGetProductList(currentPage) {
 		</c:if>
 		<c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
 				<a href="javascript:fncGetProductList('${resultPage.endUnitPage+1}')">이후 ▶</a>
-		</c:if> --%>
+		</c:if>
 		
 
     	</td>

@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page pageEncoding="EUC-KR"%>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="EUC-KR">
 
@@ -11,7 +12,10 @@
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="../javascript/calendar.js">
+<script src="../javascript/calendar.js"></script>
+<script type="text/javascript" >
+
+
 
 	function fncAddProduct() {
 		//Form 유효성 검증
@@ -21,7 +25,7 @@
 			var price = document.detailForm.price.value; */
 
 		var name = $("input[name='prodName']").val();
-		var detail = $("input[name='detail']").val();
+		var detail = $("input[name='prodDetail']").val();
 		var manuDate = $("input[name='manuDate']").val();
 		var price = $("input[name='price']").val();
 
@@ -45,38 +49,39 @@
 		//document.detailForm.action = '/addProduct.do';
 		///////////////////////////////////////////////////
 
-		/* document.detailForm.action = '/product/addProduct';		
-		document.detailForm.submit(); */
-
-		$("form").attr("method", "POST").attr("action", "/product/addProduct").submit();
+// 		document.detailForm.action = '/product/addProduct';		
+// 		document.detailForm.submit(); 
+		
+		$("form").attr("method", "POST").attr("action","/product/addProduct").submit();
 	}
 
 	$(function() {
 
-		$("td.ct_btn01:contains('등록')").on("click", function() {
+		$( "td.ct_btn01:contains('등록')").on("click", function() {
 			
-			alert(  $( "td.ct_btn01:contains('가입')" ).html() );
+ 			alert(  $( "td.ct_btn01:contains('등록')" ).html() );
 			fncAddProduct();
 		});
 	});
 
-	/* function resetData() {
-		document.detailForm.reset();
-	} */
+// 	 function resetData() {
+// 		document.detailForm.reset();
+// 	} 
 
 	$(function() {
 
-		$("td.ct_btn01:contains('취소')").bind('click', function() {
+		$("td.ct_btn01:contains('취소')").bind("click", function() {
 
-			$('form')[0].reset();
+			$("form")[0].reset();
 		});
 	});
+	
 </script>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
 
-	<form name="detailForm" method="post">
+	<form name="detailForm">
 
 		<table width="100%" height="37" border="0" cellpadding="0"
 			cellspacing="0">
@@ -182,9 +187,8 @@
 						<tr>
 							<td width="17" height="23"><img src="/images/ct_btnbg01.gif"
 								width="17" height="23" /></td>
-							<td background="/images/ct_btnbg02.gif" class="ct_btn01"
-								style="padding-top: 3px;">
-								<!--  		<a href="javascript:fncAddProduct();">등록</a></td> -->
+							<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
+								<%--  		<a href="javascript:fncAddProduct();">등록</a></td> --%>
 								등록
 							</td>
 							<td width="14" height="23"><img src="/images/ct_btnbg03.gif"
@@ -194,7 +198,7 @@
 								width="17" height="23" /></td>
 							<td background="/images/ct_btnbg02.gif" class="ct_btn01"
 								style="padding-top: 3px;">
-							<!--  	<a href="javascript:resetData();">취소</a> -->
+							<%--  	<a href="javascript:resetData();">취소</a> --%>
 								취소
 							</td>
 							<td width="14" height="23"><img src="/images/ct_btnbg03.gif"

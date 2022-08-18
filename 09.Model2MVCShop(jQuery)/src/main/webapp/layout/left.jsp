@@ -8,24 +8,15 @@
 
 <head>
 	<meta charset="EUC-KR">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>Model2 MVC Shop</title>
 
 	<link href="/css/left.css" rel="stylesheet" type="text/css">
 	
-	 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
- 	 <link rel="stylesheet" href="/resources/demos/style.css">
-	
-	 <style>
- 	 #draggable { width: 100px; height: 100px; padding: 0.5em; }
- 	 </style>
 	<!-- CDN(Content Delivery Network) 호스트 사용 -->
-<!--  	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript">-->
-		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	<script>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+	
 		function history(){
 			popWin = window.open("/history.jsp",
 														"popWin",
@@ -52,9 +43,15 @@
 		 		$(window.parent.frames["rightFrame"].document.location).attr("href","/user/listUser");
 			});
 			
-		 	 $( function() {
-		 	    $( "#draggable" ).draggable();
-		 	  } );
+			$( ".Depth03:contains('판매상품관리')").on("click", function(){
+				
+				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct?menu=manage");
+			});
+			
+			$( ".Depth03:contains('상 품 검 색')").on("click", function(){
+				
+				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct?menu=search");
+			});
 		});	
 		 
 	</script>
@@ -111,7 +108,9 @@
 				</tr>
 				<tr>
 					<td class="Depth03">
-						<a href="/listProduct.do?menu=manage"  target="rightFrame">판매상품관리</a>
+<!-- 						<a href="/listProduct.do?menu=manage"  target="rightFrame">판매상품관리</a> -->
+<!--  						<a href="/product/listProduct?menu=manage"  target="rightFrame">판매상품관리</a>  -->
+						판매상품관리
 					</td>
 				</tr>
 				<tr>
@@ -128,7 +127,9 @@
 		<table  border="0" cellspacing="0" cellpadding="0" width="159">
 			<tr>
 				<td class="Depth03">
-					<a href="/listProduct.do?menu=search" target="rightFrame">상 품 검 색</a>
+<!-- 					<a href="/listProduct.do?menu=search" target="rightFrame">상 품 검 색</a> -->
+<!-- 					<a href="../product/listProduct?menu=search" target="rightFrame">상 품 검 색</a> -->
+					상 품 검 색
 				</td>
 			</tr>
 			
@@ -151,11 +152,6 @@
 </tr>
 
 </table>
-
-<div id="draggable" class="ui-widget-content">
-  <p>♣비밀번호가 생각나지 않을땐 움직여 보세요♣</p>
-</div>
-
 
 </body>
 
