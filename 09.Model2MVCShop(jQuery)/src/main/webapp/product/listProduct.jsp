@@ -31,14 +31,24 @@
 		$( "td.ct_btn01:contains('°Ë»ö')").on("click", function(){
 			fncGetProductList(1);
 		});
-		
-		$( ".ct_list_pop td:nth-child(3)").on("click", function() {
-			self.location ="/product/getProduct?prodNo="+$(this).text().trim();
-		});
-		
-		$( ".ct_list_pop td:nth-child(3)").css("color", "red");
-		
+	/* 	 $( ".ct_list_pop td:nth-child(3)").on("click", function() {			
+			//self.location ="/product/getProduct?prodNo="+$(this).text().trim();
+			self.location ="/product/getProduct?prodNo="+$(this).parent().attr("id").trim();
+		}); */
+		 
+		 $( ".ct_list_pop td:nth-child(3)").on("click", function() {			
 				
+			 	if(${param.menu == 'search'}){
+			 		self.location ="/product/getProduct?prodNo="+$(this).parent().attr("id").trim()+"&menu=search";
+			 	}else{
+			 		self.location ="/product/updateProduct?prodNo="+$(this).parent().attr("id").trim()+"&menu=manage";
+			 	}				
+			});
+		
+		$( ".ct_list_pop td:nth-child(3)").css("color", "red"); 
+						
+		$( ".ct_list_pop:nth-child(4n+6)").css("background-color","whitesmoke");
+		
 	});
 </script>
 </head>
@@ -141,19 +151,22 @@
 	<c:set var="i" value="0" />
 	<c:forEach var="product" items="${list}">
 		<c:set var="i" value="${i+1}" />
-	<tr class="ct_list_pop">
+	<tr class="ct_list_pop" id="${ product.prodNo}">
 		<td align="center">${i}</td>
 		<td></td>
 		<c:if test="${param.menu == 'search'}">
 	 		<td align="left">
-	 		<%-- <a href="/product/getProduct?prodNo=${product.prodNo }">${product.prodName }</a> --%>
+	 		 <%-- <a href="/product/getProduct?prodNo=${product.prodNo }">${product.prodName }</a> --%>
 	 			${product.prodName}
 	 		</td>  
 		</c:if>		
 		<c:if test="${param.menu == 'manage'}">
 <%--  			<td align="left"><a href="/updateProductView.do?prodNo=${product.prodNo }">${product.prodName }</a></td> --%>
 <%--  			<td align="left"><a href="/product/updateProductView?prodNo=${product.prodNo }">${product.prodName }</a></td> --%>
-			<td align="left"><a href="/product/updateProduct?prodNo=${product.prodNo }">${product.prodName }</a></td>
+			<td align="left">
+			<%-- <a href="/product/updateProduct?prodNo=${product.prodNo }">${product.prodName }</a> --%>
+			${product.prodName}
+			</td>
 			
 		</c:if>
 		<td></td>

@@ -111,8 +111,9 @@
 			<!-- 테이블 시작 -->
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td height="26"><img
-						src="/images/uploadFiles/../../images/empty.GIF" /></td>
+					<td height="26">
+					<img src="/images/uploadFiles/../../images/uploadFiles/${product.fileName}" /></td>
+					<!-- <img src="/images/uploadFiles/../../images/empty.GIF" /></td> -->
 				</tr>
 			</table>
 			</td>
