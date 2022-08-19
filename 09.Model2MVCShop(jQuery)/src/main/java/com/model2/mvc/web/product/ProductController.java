@@ -1,5 +1,7 @@
 package com.model2.mvc.web.product;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +13,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
@@ -41,6 +45,9 @@ public class ProductController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
+	@Value("#{commonProperties['uploadTemDir']}")
+	String uploadTemDir;
+			
 	//@RequestMapping("/addProductView.do")
 	@RequestMapping(value="addProduct", method=RequestMethod.GET)
 	public String addProduct() throws Exception { 
@@ -52,11 +59,20 @@ public class ProductController {
 
 	//@RequestMapping("/addProduct.do")
 	@RequestMapping(value="addProduct", method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product product) throws Exception {
+	public String addProduct(@ModelAttribute("product") Product product, MultipartFile[] files, Model model) throws Exception {
+		
 		
 		System.out.println("/product/addProduct : POST");
 		//Business Logic
 		productService.addProduct(product);
+		
+		String uploadFolder = "C:\\Users\\bitcamp\\git\\01.ModelMVCShop\\01.Model2MVCShop(stu)\\src\\main\\webapp\\images\\uploadFiles";
+		
+		File saveFile = new File();
+		
+		try {
+			
+		}
 		
 		return "forward:/product/addProduct.jsp";
 	}
@@ -74,7 +90,7 @@ public class ProductController {
 		
 		model.addAttribute("product",product);
 				
-		System.out.println("¸ðµ¨°ú ºä ¿¬°á µÇ¾ú³ª?");
+		System.out.println("¸ðµ¨°ú ºä ¿¬°á µÇ¾ú³ª?"+product);
 		return "forward:/product/getProduct.jsp";
 	}
 	

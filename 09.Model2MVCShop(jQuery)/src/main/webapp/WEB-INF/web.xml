@@ -37,6 +37,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
 
+<!-- 파일업로드 해보는중 -->
+    <filter>
+        <filter-name>MultipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MultipartFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
  	 <!-- ::SpringMVC 에서의 Front Controller(단일인입점)  DispatcherServlet 선언 -->
 	  <servlet>
 		    <servlet-name>action</servlet-name>
